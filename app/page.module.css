@@ -1,0 +1,8 @@
+
+.card {
+    background-image: url('../public/home.jpg');
+    height: 420px;
+    width: 100%;
+    background-size: cover;
+    
+}
