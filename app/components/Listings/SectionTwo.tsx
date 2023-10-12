@@ -1,16 +1,14 @@
 import { Heading, Select, SimpleGrid, Stack, Text } from "@chakra-ui/react";
-import React from "react";
 
-import ListingCard from "./ListingCard/ListingCard";
 import prisma from "@/prisma/client";
 import StatusBadge from "../StatusBadge";
-import delay from "delay";
+import ListingCard from "./ListingCard/ListingCard";
+
 import Link from "next/link";
 
 export const SectionTwo = async () => {
   const property = await prisma.property.findMany();
 
-  await delay(2000);
   return (
     <div>
       <Heading color="black" pt="10">

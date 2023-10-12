@@ -40,7 +40,7 @@ const LoadingIssuePage = () => {
             country={<Skeleton />}
             bed={<Skeleton />}
             bath={<Skeleton />}
-            status={<Skeleton />}
+            status={<Skeleton width="5rem" />}
           />
         ))}
       </SimpleGrid>

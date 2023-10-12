@@ -1,12 +1,10 @@
 import prisma from "@/prisma/client";
 import {
-  AvatarBadge,
   Box,
   Button,
   Card,
   Flex,
   Heading,
-  Highlight,
   IconButton,
   Stack,
   Text,
@@ -14,20 +12,19 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import React from "react";
 
-import villa from "/public/villa.jpg";
-import { BsChevronCompactLeft } from "react-icons/bs";
-import { BsChevronCompactRight } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
-import { FiShare } from "react-icons/fi";
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { CiCalendar } from "react-icons/ci";
+import { FiShare } from "react-icons/fi";
 import { PiHouseLineBold } from "react-icons/pi";
+import villa from "/public/villa.jpg";
+
 interface Props {
   params: { id: string };
 }
 const page = async ({ params }: Props) => {
-  //   if (typeof params.id !== "number") return notFound();
+  // if (typeof params.id !== "number") return notFound();
 
   const property = await prisma.property.findUnique({
     where: { id: parseInt(params.id) },
@@ -40,7 +37,7 @@ const page = async ({ params }: Props) => {
   const millisecondsInADay = 1000 * 60 * 60 * 24;
   const daysDifference = Math.ceil(timeDifference / millisecondsInADay);
   return (
-    <div>
+    <Box>
       <Box pos="relative" height="400px" width="full" overflow="hidden">
         <IconButton
           aria-label="left-arrow"
@@ -116,7 +113,7 @@ const page = async ({ params }: Props) => {
         <Button>Get more info</Button>
         <Button>Share this home</Button>
       </Stack>
-    </div>
+    </Box>
   );
 };
 

@@ -1,16 +1,16 @@
 "use client";
 
 import { Alert, Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
-import React, { useState } from "react";
 import axios from "axios";
-import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createPropertySchema } from "@/app/validationSchema";
-import { z } from "zod";
 import ErrorMessage from "@/app/components/Form/ErrorMessage";
 import Spinner from "@/app/components/Form/Spinner";
+import { createPropertySchema } from "@/app/validationSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
 type PropertyForm = z.infer<typeof createPropertySchema>;
 
