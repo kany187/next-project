@@ -1,9 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import logo from "../public/logo.jpg";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import classnames from "classnames";
 
 const NavBar = () => {
+  const currentPath = usePathname();
+
+  const links = [
+    { label: "Buy", href: "/listings" },
+    { label: "Sell", href: "/sell" },
+    { label: "Rent", href: "/rent" },
+  ];
   return (
     <>
       <div className=" bg-gray-100 text-black">
@@ -14,30 +25,24 @@ const NavBar = () => {
             </Link>
             <div className="tabs">
               <ul className="flex space-x-4">
-                <li>
+                {links.map((link) => (
                   <Link
-                    href="/listings"
-                    className="tab tab-bordered tab-active"
+                    key={link.href}
+                    className={classnames({
+                      "tab tab-bordered tab-active": link.href === currentPath,
+                      "tab tab-border-none": link.href !== currentPath,
+                    })}
+                    href={link.href}
                   >
-                    Buy
+                    {link.label}
                   </Link>
-                </li>
-                <li>
-                  <Link href="/listings" className="tab ">
-                    Sell
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/listings" className="tab ">
-                    Rent
-                  </Link>
-                </li>
+                ))}
               </ul>
             </div>
           </div>
           <div className="flex space-x-4 mr-40">
             <Link href="/login">Log in</Link>
-            <Link href="signup" className="btn btn-ghost normal-case">
+            <Link href="/signup" className="btn btn-ghost normal-case">
               Sign up
             </Link>
           </div>
