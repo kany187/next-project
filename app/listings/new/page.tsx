@@ -17,6 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createPropertySchema } from "@/app/validationSchema";
 import { z } from "zod";
 import ErrorMessage from "@/app/components/Form/ErrorMessage";
+import Spinner from "@/app/components/Form/Spinner";
 
 type PropertyForm = z.infer<typeof createPropertySchema>;
 
@@ -31,6 +32,7 @@ const page = () => {
   });
 
   const [error, setError] = useState("");
+  const [isSubmitting, setSubmitting] = useState(false);
   return (
     <div className="max-w-xl">
       {error && (
@@ -43,9 +45,11 @@ const page = () => {
         className="space-y-3"
         onSubmit={handleSubmit((data) => {
           try {
+            setSubmitting(true);
             axios.post("/api/properties", data);
-            // router.push("/listings");
+            router.push("/listings");
           } catch (error) {
+            setSubmitting(false);
             setError("An unexpected error occured");
           }
         })}
@@ -71,7 +75,9 @@ const page = () => {
         <ErrorMessage>{errors.bed?.message}</ErrorMessage>
         <Input placeholder="bath" color="black" {...register("bath")} />
         <ErrorMessage>{errors.bath?.message}</ErrorMessage>
-        <Button type="submit">Submit </Button>
+        <Button disabled={isSubmitting} type="submit">
+          Submit {isSubmitting && <Spinner />}
+        </Button>
       </form>
     </div>
   );
