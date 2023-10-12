@@ -1,18 +1,17 @@
 import { Heading, Select, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import React from "react";
+import ListingCard from "../components/Listings/ListingCard/ListingCard";
 
-import ListingCard from "./ListingCard/ListingCard";
-import prisma from "@/prisma/client";
-import StatusBadge from "../StatusBadge";
-import delay from "delay";
-import Link from "next/link";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import SectionOne from "../components/Listings/SectionOne";
 
-export const SectionTwo = async () => {
-  const property = await prisma.property.findMany();
+const LoadingIssuePage = () => {
+  const property = [1, 2, 3];
 
-  await delay(2000);
   return (
     <div>
+      <SectionOne />
       <Heading color="black" pt="10">
         Homes for sales in Lemba, Kinshasa
       </Heading>
@@ -33,20 +32,20 @@ export const SectionTwo = async () => {
       </Stack>
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={2} pt="10">
         {property.map((prop) => (
-          <Link href={`/listings/${prop.id}`}>
-            <ListingCard
-              key={prop.id}
-              price={prop.price}
-              streetAddress={prop.streetAddress}
-              city={prop.city}
-              country={prop.country}
-              bed={prop.bed}
-              bath={prop.bath}
-              status={<StatusBadge status={prop.status} />}
-            />
-          </Link>
+          <ListingCard
+            key={prop}
+            price={<Skeleton />}
+            streetAddress={<Skeleton />}
+            city={<Skeleton />}
+            country={<Skeleton />}
+            bed={<Skeleton />}
+            bath={<Skeleton />}
+            status={<Skeleton />}
+          />
         ))}
       </SimpleGrid>
     </div>
   );
 };
+
+export default LoadingIssuePage;

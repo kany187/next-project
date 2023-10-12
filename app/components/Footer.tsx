@@ -1,47 +1,90 @@
+"use client";
+
 import React from "react";
-import { Box, Divider, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Divider,
+  IconButton,
+  Stack,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import Image from "next/image";
 
-import facebook from "/public/facebook.png";
-import instagram from "/public/instagram.png";
+import { AiOutlineInstagram } from "react-icons/ai";
+import { AiFillFacebook } from "react-icons/ai";
+import { AiOutlineWhatsApp } from "react-icons/ai";
+
 import logo from "/public/logo.jpg";
+import Link from "next/link";
 
 const Footer = () => {
   return (
     <div>
-      <Box height="10px">
+      <Box
+        bg={useColorModeValue("gray.500", "gray.900")}
+        color={useColorModeValue("gray.700", "gray.200")}
+      >
         <Stack
-          direction="row"
-          spacing={5}
-          h="100px"
-          p={9}
-          justifyContent="center"
+          maxW={"6xl"}
+          py={4}
+          spacing={4}
+          justify={"center"}
+          align={"center"}
         >
-          <Text color="black">About us</Text>
-          <Divider orientation="vertical" mb="2" />
-          <Text color="black">Privacy</Text>
-          <Divider orientation="vertical" color="black" />
-          <Text color="black">Terms of use</Text>
-          <Divider orientation="vertical" color="black" />
-          <Text color="black">Help</Text>
-        </Stack>
-        <Box pl={190} pr={190} pb="10">
-          <Divider orientation="horizontal" color="black" />
-        </Box>
+          <Image src={logo} alt="Logo" width={80} />
+          <Stack direction="row" spacing="6">
+            <Link href="/about">
+              <Box>About us</Box>
+            </Link>
 
-        <Box h="100px">
-          <Stack direction="row" spacing={5} justifyContent="center">
-            <Image src={logo} alt="Logo" width={80} />
-            <Text color="black" pt="8">
-              Follow us:{" "}
-            </Text>
-            <Image src={facebook} alt="shot image" width={50} />
-            <Image src={instagram} alt="shot image" width={50} />
+            <Box>Privacy</Box>
+
+            <Box>Terms of use</Box>
+
+            <Box>Help</Box>
+
+            <Box>Contact us</Box>
           </Stack>
-        </Box>
-        <Text align="center" color="black" bgColor="gray.200">
-          Copyright &copy; 2023 KIBOO Inc. All right reserved.
-        </Text>
+        </Stack>
+      </Box>
+
+      <Box
+        borderTopWidth={1}
+        borderStyle={"solid"}
+        borderColor={useColorModeValue("gray.200", "gray.700")}
+      >
+        <Container
+          as={Stack}
+          maxW={"6xl"}
+          py={4}
+          direction={{ base: "column", md: "row" }}
+          spacing={4}
+          justify={{ base: "center", md: "space-between" }}
+          align={{ base: "center", md: "center" }}
+        >
+          <Text>Copyright &copy; 2023 KIBOO Inc. All right reserved.</Text>
+
+          <Stack direction="row" spacing={6}>
+            <Text pt="2">Follow us:</Text>
+            <IconButton
+              colorScheme="teal"
+              aria-label="instagram"
+              icon={<AiOutlineInstagram />}
+            />
+            <IconButton
+              colorScheme="teal"
+              aria-label="facebook"
+              icon={<AiFillFacebook />}
+            />
+            <IconButton
+              colorScheme="teal"
+              aria-label="instagram"
+              icon={<AiOutlineWhatsApp />}
+            />
+          </Stack>
+        </Container>
       </Box>
     </div>
   );

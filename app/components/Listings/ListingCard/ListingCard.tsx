@@ -5,7 +5,6 @@ import {
   Heading,
   Stack,
   Text,
-  Image as Img,
   CardBody,
   Button,
   Badge,
@@ -16,20 +15,38 @@ import villa from "/public/villa.jpg";
 import Image from "next/image";
 import { AiOutlineHeart } from "react-icons/ai";
 
-const ListingCard = () => {
+interface Props {
+  price: any;
+  city: any;
+  country: any;
+  streetAddress: any;
+  bed: any;
+  bath: any;
+  status: any;
+}
+
+const ListingCard = ({
+  price,
+  city,
+  country,
+  streetAddress,
+  bed,
+  bath,
+  status,
+}: Props) => {
   return (
     <div>
       <Card borderRadius={10} overflow="hidden" maxW="md">
         <Badge
-          colorScheme="teal"
-          borderRadius="full"
-          px="2"
+          // colorScheme="teal"
+          // borderRadius="full"
+          // px="2"
           pos="absolute"
           top="2"
           right="2"
           zIndex="1"
         >
-          New
+          {status}
         </Badge>
         <Box
           bgColor="gray.200"
@@ -46,18 +63,17 @@ const ListingCard = () => {
 
         <CardBody>
           <Heading fontSize="2xl" as="b">
-            $649,000
+            {price}
           </Heading>
           <Stack direction="row">
-            <Text as="b">4 bed</Text>
-            <Text as="b">3.5 bath</Text>
+            <Text as="b">{bed} bed</Text>
+            <Text as="b">{bath} bath</Text>
             <Text as="b">2,214 sqft</Text>
             <Text as="b">1,5000</Text>
           </Stack>
           <Stack direction="row">
             <Text fontSize="sm">
-              Cite Solongo nord 3728 Lemba, Kinshasa, Replublic Democratique du
-              Congo
+              {streetAddress} {city} {country}
             </Text>
             <Button>Contact Agent</Button>
           </Stack>

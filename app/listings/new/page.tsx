@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  Alert,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Text,
-} from "@chakra-ui/react";
+import { Alert, Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import React, { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -33,6 +26,17 @@ const page = () => {
 
   const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false);
+
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      setSubmitting(true);
+      await axios.post("/api/propertie", data);
+      router.push("/listings");
+    } catch (error) {
+      setSubmitting(false);
+      setError("An unexpected error occured");
+    }
+  });
   return (
     <div className="max-w-xl">
       {error && (
@@ -41,39 +45,23 @@ const page = () => {
         </Alert>
       )}
 
-      <form
-        className="space-y-3"
-        onSubmit={handleSubmit((data) => {
-          try {
-            setSubmitting(true);
-            axios.post("/api/properties", data);
-            router.push("/listings");
-          } catch (error) {
-            setSubmitting(false);
-            setError("An unexpected error occured");
-          }
-        })}
-      >
+      <form className="space-y-3" onSubmit={onSubmit}>
         <FormControl>
           <FormLabel>Street</FormLabel>
-          <Input
-            placeholder="street"
-            color="black"
-            {...register("streetAddress")}
-          />
+          <Input placeholder="street" {...register("streetAddress")} />
 
           <ErrorMessage>{errors.streetAddress?.message}</ErrorMessage>
         </FormControl>
 
-        <Input placeholder="city" color="black" {...register("city")} />
+        <Input placeholder="city" {...register("city")} />
         <ErrorMessage>{errors.city?.message}</ErrorMessage>
-        <Input placeholder="country" color="black" {...register("country")} />
+        <Input placeholder="country" {...register("country")} />
         <ErrorMessage>{errors.country?.message}</ErrorMessage>
-        <Input placeholder="price" color="black" {...register("price")} />
+        <Input placeholder="price" {...register("price")} />
         <ErrorMessage>{errors.price?.message}</ErrorMessage>
-        <Input placeholder="bed" color="black" {...register("bed")} />
+        <Input placeholder="bed" {...register("bed")} />
         <ErrorMessage>{errors.bed?.message}</ErrorMessage>
-        <Input placeholder="bath" color="black" {...register("bath")} />
+        <Input placeholder="bath" {...register("bath")} />
         <ErrorMessage>{errors.bath?.message}</ErrorMessage>
         <Button disabled={isSubmitting} type="submit">
           Submit {isSubmitting && <Spinner />}

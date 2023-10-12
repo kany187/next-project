@@ -1,7 +1,9 @@
+// "use client";
+
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Providers } from "./providers";
+import { ChakraProvider } from "@chakra-ui/react";
 import NavBar from "./NavBar";
 import Footer from "./components/Footer";
 
@@ -20,11 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>
+        <ChakraProvider>
           <NavBar />
           <main className="p-5">{children}</main>
-          <Footer />
-        </Providers>
+          {/* <Footer /> */}
+        </ChakraProvider>
       </body>
     </html>
   );

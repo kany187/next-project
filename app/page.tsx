@@ -1,3 +1,4 @@
+"use client";
 import { Box } from "@chakra-ui/react";
 import SectionOne from "./components/Home/SectionOne";
 import SectionThree from "./components/Home/SectionThree";
