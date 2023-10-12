@@ -14,19 +14,18 @@ model Property {
   id            Int      @id @default(autoincrement())
   streetAddress String
   price         String
-  imgSrc        String
+  imgSrc        String?
   bed           String
   bath          String
-  long          String
-  lat           String
-  zipCode       String
+  long          String?
+  lat           String?
+  zipCode       String?
   city          String
   country       String
-  homeType      String
+  homeType      String?
   status        Status   @default(NEW)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  email         String   @unique
 }
 
 enum Status {
