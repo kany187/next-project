@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createPropertySchema } from "@/app/validationSchema";
 import { z } from "zod";
+import ErrorMessage from "@/app/components/Form/ErrorMessage";
 
 type PropertyForm = z.infer<typeof createPropertySchema>;
 
@@ -56,21 +57,20 @@ const page = () => {
             color="black"
             {...register("streetAddress")}
           />
-          {errors.streetAddress && (
-            <Text color="red">{errors.streetAddress.message}</Text>
-          )}
+
+          <ErrorMessage>{errors.streetAddress?.message}</ErrorMessage>
         </FormControl>
 
         <Input placeholder="city" color="black" {...register("city")} />
-        {errors.city && <Text color="red">{errors.city.message}</Text>}
+        <ErrorMessage>{errors.city?.message}</ErrorMessage>
         <Input placeholder="country" color="black" {...register("country")} />
-        {errors.country && <Text color="red">{errors.country.message}</Text>}
+        <ErrorMessage>{errors.country?.message}</ErrorMessage>
         <Input placeholder="price" color="black" {...register("price")} />
-        {errors.price && <Text color="red">{errors.price.message}</Text>}
+        <ErrorMessage>{errors.price?.message}</ErrorMessage>
         <Input placeholder="bed" color="black" {...register("bed")} />
-        {errors.bed && <Text color="red">{errors.bed.message}</Text>}
+        <ErrorMessage>{errors.bed?.message}</ErrorMessage>
         <Input placeholder="bath" color="black" {...register("bath")} />
-        {errors.bath && <Text color="red">{errors.bath.message}</Text>}
+        <ErrorMessage>{errors.bath?.message}</ErrorMessage>
         <Button type="submit">Submit </Button>
       </form>
     </div>
