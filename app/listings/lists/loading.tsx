@@ -1,17 +1,15 @@
 import { Heading, Select, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import React from "react";
-import ListingCard from "../../components/Listings/ListingCard/ListingCard";
+import ListingCard from "./ListingCard";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import SectionOne from "../../components/Listings/SectionOne";
 
 const LoadingIssuePage = () => {
   const property = [1, 2, 3];
 
   return (
     <div>
-      <SectionOne />
       <Heading color="black" pt="10">
         Homes for sales in Lemba, Kinshasa
       </Heading>

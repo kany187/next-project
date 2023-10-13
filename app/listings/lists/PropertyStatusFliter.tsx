@@ -1,5 +1,8 @@
+"use client";
+
 import { Box, Select } from "@chakra-ui/react";
-import { ListingStatus, Status } from "@prisma/client";
+import { ListingStatus } from "@prisma/client";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const statuses: { label: string; value?: ListingStatus }[] = [
@@ -9,11 +12,22 @@ const statuses: { label: string; value?: ListingStatus }[] = [
   { label: "Sold", value: "SOLD" },
 ];
 const PropertyStatusFliter = () => {
+  const router = useRouter();
+
   return (
     <Box>
-      <Select placeholder="Listing status" width="50" color="gray">
+      <Select
+        placeholder="Listing status"
+        width="50"
+        color="gray"
+        onChange={(e) => {
+          const status = e.target.value;
+          const query = status ? `?listingStatus=${status}` : "";
+          router.push("/listings/lists" + query);
+        }}
+      >
         {statuses.map((status) => (
-          <option key={status.value} value={status.value}>
+          <option key={status.value} value={status.value || ""}>
             {status.label}
           </option>
         ))}
