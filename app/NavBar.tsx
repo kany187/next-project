@@ -12,7 +12,7 @@ const NavBar = () => {
   const currentPath = usePathname();
 
   const links = [
-    { label: "Buy", href: "/listings" },
+    { label: "Buy", href: "/listings/lists" },
     { label: "Sell", href: "/sell" },
     { label: "Rent", href: "/rent" },
   ];

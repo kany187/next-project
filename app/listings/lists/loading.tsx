@@ -1,10 +1,10 @@
 import { Heading, Select, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import React from "react";
-import ListingCard from "../components/Listings/ListingCard/ListingCard";
+import ListingCard from "../../components/Listings/ListingCard/ListingCard";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import SectionOne from "../components/Listings/SectionOne";
+import SectionOne from "../../components/Listings/SectionOne";
 
 const LoadingIssuePage = () => {
   const property = [1, 2, 3];

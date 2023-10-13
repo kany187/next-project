@@ -5,7 +5,7 @@ import React from "react";
 const EditPropertyButton = ({ propertyId }: { propertyId: number }) => {
   return (
     <Button>
-      <Link href={`/properties/${propertyId}/edit`}>Edit</Link>
+      <Link href={`/properties/edit/${propertyId}`}>Edit</Link>
     </Button>
   );
 };

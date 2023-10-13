@@ -8,12 +8,12 @@ import { useForm } from "react-hook-form";
 
 import ErrorMessage from "@/app/components/Form/ErrorMessage";
 import Spinner from "@/app/components/Form/Spinner";
-import { createPropertySchema } from "@/app/validationSchema";
+import { PropertySchema } from "@/app/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Property } from "@prisma/client";
 
-type PropertyFormData = z.infer<typeof createPropertySchema>;
+type PropertyFormData = z.infer<typeof PropertySchema>;
 
 const PropertyForm = ({ property }: { property?: Property }) => {
   const router = useRouter();
@@ -22,7 +22,7 @@ const PropertyForm = ({ property }: { property?: Property }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<PropertyFormData>({
-    resolver: zodResolver(createPropertySchema),
+    resolver: zodResolver(PropertySchema),
   });
 
   const [error, setError] = useState("");
@@ -31,8 +31,9 @@ const PropertyForm = ({ property }: { property?: Property }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitting(true);
-      await axios.post("/api/propertie", data);
-      router.push("/listings");
+      if (property) await axios.patch("/api/properties/" + property.id, data);
+      await axios.post("/api/properties", data);
+      router.push("/listings/lists");
     } catch (error) {
       setSubmitting(false);
       setError("An unexpected error occured");
@@ -89,7 +90,8 @@ const PropertyForm = ({ property }: { property?: Property }) => {
         />
         <ErrorMessage>{errors.bath?.message}</ErrorMessage>
         <Button disabled={isSubmitting} type="submit">
-          Submit {isSubmitting && <Spinner />}
+          {property ? "Update Property" : "Submit"}{" "}
+          {isSubmitting && <Spinner />}
         </Button>
       </form>
     </div>

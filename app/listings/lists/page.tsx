@@ -1,6 +1,6 @@
 import React from "react";
-import SectionOne from "../components/Listings/SectionOne";
-import { SectionTwo } from "../components/Listings/SectionTwo";
+import SectionOne from "../../components/Listings/SectionOne";
+import { SectionTwo } from "../../components/Listings/SectionTwo";
 
 const ListingsPage = () => {
   return (

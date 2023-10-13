@@ -34,3 +34,21 @@ export async function PATCH(
   });
   return NextResponse.json(updatedProperty);
 }
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const property = await prisma.property.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+
+  if (!property)
+    return NextResponse.json({ error: "Invalid property" }, { status: 404 });
+
+  await prisma.property.delete({
+    where: { id: property.id },
+  });
+
+  return NextResponse.json({});
+}
