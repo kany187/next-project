@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import prisma from "@/prisma/client";
-import { PropertySchema } from "@/app/validationSchema";
+import { pathPropertySchema } from "@/app/validationSchema";
 import authOptions from "@/app/auth/authOptions";
 import { getServerSession } from "next-auth";
 
@@ -15,10 +15,20 @@ export async function PATCH(
 
   const body = await request.json();
 
-  const validation = PropertySchema.safeParse(body);
+  const validation = pathPropertySchema.safeParse(body);
 
   if (!validation.success)
     return NextResponse.json(validation.error.format(), { status: 400 });
+
+  const { assignedToUserId } = body;
+
+  if (assignedToUserId) {
+    const user = await prisma.user.findUnique({
+      where: { id: assignedToUserId },
+    });
+    if (!user)
+      return NextResponse.json({ error: "Invalid user" }, { status: 400 });
+  }
 
   const property = await prisma.property.findUnique({
     where: { id: parseInt(params.id) },
@@ -36,6 +46,7 @@ export async function PATCH(
       streetAddress: body.streetAddress,
       country: body.country,
       city: body.city,
+      assignedToUserId,
     },
   });
   return NextResponse.json(updatedProperty);
