@@ -19,6 +19,7 @@ import { CiCalendar } from "react-icons/ci";
 import { FiShare } from "react-icons/fi";
 import { PiHouseLineBold } from "react-icons/pi";
 import villa from "/public/villa.jpg";
+import AssigneeSelect from "./AssigneeSelect";
 
 interface Props {
   params: { id: string };
@@ -112,6 +113,7 @@ const page = async ({ params }: Props) => {
       <Stack direction="row" pt="4">
         <Button>Get more info</Button>
         <Button>Share this home</Button>
+        <AssigneeSelect />
       </Stack>
     </Box>
   );

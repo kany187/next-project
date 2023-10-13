@@ -16,6 +16,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
+import Skeleton from "react-loading-skeleton";
 
 const NavBar = () => {
   const currentPath = usePathname();
@@ -26,6 +27,9 @@ const NavBar = () => {
     { label: "Sell", href: "/sell" },
     { label: "Rent", href: "/rent" },
   ];
+
+  if (status === "loading") return <Skeleton width="3rem" />;
+
   return (
     <>
       <Stack direction="row" justify="space-between" bgColor="gray.100" pt="5">
@@ -53,32 +57,44 @@ const NavBar = () => {
 
         <Stack direction="row">
           {status === "authenticated" && (
-            <Menu>
+            <Menu autoSelect={false}>
               <MenuButton>
                 <Avatar src={session.user!.image!} ignoreFallback />
               </MenuButton>
               <MenuList>
-                <MenuItem></MenuItem>
+                <MenuItem _hover={{ bg: "white" }}>
+                  {session.user?.email}
+                </MenuItem>
+                <MenuItem _hover={{ bg: "white" }}>
+                  <Link href="/api/auth/signout">
+                    {" "}
+                    <Button
+                      fontWeight={400}
+                      fontSize={"sm"}
+                      colorScheme="teal"
+                      width="100"
+                      // _hover={{ bg: "teal.300" }}
+                    >
+                      Log out
+                    </Button>
+                  </Link>
+                </MenuItem>
               </MenuList>
             </Menu>
-            // <Link href="/api/auth/signout">
-            //   {" "}
-            //   <Button
-            //     fontWeight={400}
-            //     fontSize={"sm"}
-            //     colorScheme="teal"
-            //     _hover={{ bg: "teal.300" }}
-            //   >
-            //     Log out
-            //   </Button>
-            // </Link>
           )}
           {status === "unauthenticated" && (
-            <Link href="/api/auth/signin">
-              <Button fontWeight={400} fontSize={"sm"}>
-                Log in
-              </Button>
-            </Link>
+            <Stack>
+              <Link href="/api/auth/signup">
+                <Button fontWeight={400} fontSize={"sm"}>
+                  Sign up
+                </Button>
+              </Link>
+              <Link href="/api/auth/signin">
+                <Button fontWeight={400} fontSize={"sm"}>
+                  Log in
+                </Button>
+              </Link>
+            </Stack>
           )}
         </Stack>
       </Stack>
