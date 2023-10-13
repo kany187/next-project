@@ -18,6 +18,7 @@ import { PiHouseLineBold } from "react-icons/pi";
 import { BiBuildingHouse } from "react-icons/bi";
 import { TbBuilding } from "react-icons/tb";
 import { GiPoland } from "react-icons/gi";
+import PropertyStatusFliter from "../PropertyStatusFliter";
 const Search = () => {
   return (
     <div>
@@ -25,10 +26,10 @@ const Search = () => {
       <Stack direction="row">
         <Input htmlSize={4} width="auto" placeholder="Lemba" />
         <Box>
-          <Menu>
+          <Menu autoSelect={false}>
             <MenuButton as={Button}>Price</MenuButton>
             <MenuList>
-              <MenuItem minH="100px">
+              <MenuItem minH="100px" _hover={{ bg: "white" }}>
                 <Select placeholder="$ No min" width="50" color="gray">
                   <option>Any price</option>
                   <option>$180K</option>
@@ -54,11 +55,11 @@ const Search = () => {
           </Menu>
         </Box>
         <Box>
-          <Menu>
+          <Menu autoSelect={false}>
             <MenuButton as={Button}>Property type</MenuButton>
             <MenuList>
               <MenuGroup title="Property type" color="black">
-                <MenuItem minH="100px">
+                <MenuItem minH="100px" _hover={{ bg: "white" }}>
                   <Stack direction="row" spacing={4} flexWrap="wrap">
                     <Card
                       alignItems="center"
@@ -88,11 +89,11 @@ const Search = () => {
           </Menu>
         </Box>
         <Box>
-          <Menu>
+          <Menu autoSelect={false}>
             <MenuButton as={Button}>Room</MenuButton>
             <MenuList>
               <MenuGroup title="Bedrooms" color="black">
-                <MenuItem minH="50px">
+                <MenuItem minH="50px" _hover={{ bg: "white" }}>
                   <Select placeholder="No min" width="50" color="gray" mr="4">
                     <option>Any price</option>
                     <option>Studio</option>
@@ -134,7 +135,7 @@ const Search = () => {
             </MenuList>
           </Menu>
         </Box>
-        <Select placeholder="Listing status" width="50" color="gray"></Select>
+        <PropertyStatusFliter />
         <Select placeholder="More" width="50" color="gray"></Select>
         <Button>Save search</Button>
       </Stack>

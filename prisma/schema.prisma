@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Property {
-  id               Int      @id @default(autoincrement())
+  id               Int           @id @default(autoincrement())
   streetAddress    String
   price            String
   imgSrc           String?
@@ -23,16 +23,31 @@ model Property {
   city             String
   country          String
   homeType         String?
-  status           Status   @default(NEW)
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-  assignedToUserId String?  @db.VarChar(255)
-  assignedToUser   User?    @relation(fields: [assignedToUserId], references: [id])
+  status           Status        @default(NEW)
+  listingStatus    ListingStatus @default(FOR_SALE)
+  propertyType     PropertyType  @default(ANY)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  assignedToUserId String?       @db.VarChar(255)
+  assignedToUser   User?         @relation(fields: [assignedToUserId], references: [id])
 }
 
 enum Status {
   NEW
   SOLD
+}
+
+enum ListingStatus {
+  FOR_SALE
+  PENDING
+  SOLD
+}
+
+enum PropertyType {
+  ANY
+  HOUSE
+  APPARTMENT
+  LAND
 }
 
 model Account {
