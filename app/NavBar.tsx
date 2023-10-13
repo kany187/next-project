@@ -6,10 +6,20 @@ import logo from "../public/logo.jpg";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import classnames from "classnames";
-import { Button, Stack } from "@chakra-ui/react";
+import {
+  Avatar,
+  Button,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Stack,
+} from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 
 const NavBar = () => {
   const currentPath = usePathname();
+  const { status, data: session } = useSession();
 
   const links = [
     { label: "Buy", href: "/listings/lists" },
@@ -42,22 +52,34 @@ const NavBar = () => {
         </Stack>
 
         <Stack direction="row">
-          <Link href="/login">
-            <Button fontWeight={400} fontSize={"sm"}>
-              Log in
-            </Button>
-          </Link>
-          <Link href="/signup">
-            {" "}
-            <Button
-              fontWeight={400}
-              fontSize={"sm"}
-              colorScheme="teal"
-              _hover={{ bg: "teal.300" }}
-            >
-              Sign in
-            </Button>
-          </Link>
+          {status === "authenticated" && (
+            <Menu>
+              <MenuButton>
+                <Avatar src={session.user!.image!} ignoreFallback />
+              </MenuButton>
+              <MenuList>
+                <MenuItem></MenuItem>
+              </MenuList>
+            </Menu>
+            // <Link href="/api/auth/signout">
+            //   {" "}
+            //   <Button
+            //     fontWeight={400}
+            //     fontSize={"sm"}
+            //     colorScheme="teal"
+            //     _hover={{ bg: "teal.300" }}
+            //   >
+            //     Log out
+            //   </Button>
+            // </Link>
+          )}
+          {status === "unauthenticated" && (
+            <Link href="/api/auth/signin">
+              <Button fontWeight={400} fontSize={"sm"}>
+                Log in
+              </Button>
+            </Link>
+          )}
         </Stack>
       </Stack>
     </>

@@ -6,6 +6,8 @@ import { Inter } from "next/font/google";
 import { ChakraProvider } from "@chakra-ui/react";
 import NavBar from "./NavBar";
 import Footer from "./components/Footer";
+import AuthProvider from "./auth/Provider";
+import QueryClientProvider from "./QueryClientProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +24,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ChakraProvider>
-          <NavBar />
-          <main className="p-5">{children}</main>
-          {/* <Footer /> */}
-        </ChakraProvider>
+        <QueryClientProvider>
+          <AuthProvider>
+            <ChakraProvider>
+              <NavBar />
+              <main className="p-5">{children}</main>
+              {/* <Footer /> */}
+            </ChakraProvider>
+          </AuthProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
