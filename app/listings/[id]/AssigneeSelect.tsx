@@ -4,7 +4,7 @@ import { Select } from "@chakra-ui/react";
 import { Property, User } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import toast, { Toaster } from "react-hot-toast";
@@ -18,7 +18,7 @@ const AssigneeSelect = ({ property }: { property: Property }) => {
 
   const assignedAgent = async (userId: string) => {
     try {
-      await axios.patch("/api/properties" + property.id, {
+      await axios.patch("/api/properties/" + property.id, {
         assignedToUserId: userId || null,
       });
     } catch (error) {
@@ -32,7 +32,10 @@ const AssigneeSelect = ({ property }: { property: Property }) => {
         placeholder="Assign Agent..."
         width="50"
         defaultValue={property.assignedToUserId || ""}
-        onChange={() => assignedAgent}
+        onChange={(e) => {
+          const userId = e.target.value;
+          assignedAgent(userId);
+        }}
       >
         <option value="">Unassigned</option>
         {users?.map((user) => (
