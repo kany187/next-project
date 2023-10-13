@@ -113,7 +113,7 @@ const page = async ({ params }: Props) => {
       <Stack direction="row" pt="4">
         <Button>Get more info</Button>
         <Button>Share this home</Button>
-        <AssigneeSelect />
+        <AssigneeSelect property={property} />
       </Stack>
     </Box>
   );
