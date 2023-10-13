@@ -17,12 +17,11 @@ model Property {
   imgSrc           String?
   bed              String
   bath             String
-  long             String?
+  lng              String?
   lat              String?
   zipCode          String?
   city             String
   country          String
-  homeType         String?
   status           Status        @default(NEW)
   listingStatus    ListingStatus @default(FOR_SALE)
   propertyType     PropertyType  @default(ANY)

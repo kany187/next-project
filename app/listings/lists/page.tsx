@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Heading, Select, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import { Heading, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 
 import prisma from "@/prisma/client";
 import StatusBadge from "../../components/StatusBadge";
@@ -8,10 +8,11 @@ import ListingCard from "./ListingCard";
 
 import Link from "next/link";
 import PropertyFilter from "./PropertyFilter";
-import { ListingStatus } from "@prisma/client";
+import { ListingStatus, Property } from "@prisma/client";
+import PropertySortFilter from "./PropertySortFilter";
 
 interface Props {
-  searchParams: { listingStatus: ListingStatus };
+  searchParams: { listingStatus: ListingStatus; orderBy: keyof Property };
 }
 
 const ListingsPage = async ({ searchParams }: Props) => {
@@ -20,10 +21,14 @@ const ListingsPage = async ({ searchParams }: Props) => {
     ? searchParams.listingStatus
     : undefined;
 
+  const orderBy = searchParams.orderBy
+    ? { [searchParams.orderBy]: "asc" }
+    : undefined;
   const property = await prisma.property.findMany({
     where: {
       listingStatus: status,
     },
+    orderBy,
   });
 
   return (
@@ -39,13 +44,7 @@ const ListingsPage = async ({ searchParams }: Props) => {
         <Text color="black" pt="2">
           Sort by
         </Text>
-        <Select placeholder="Newest listings" width="40" color="gray">
-          <option>Newest listings</option>
-          <option>Price (High to Low)</option>
-          <option>Price (Low to High)</option>
-          <option>Bedrooms</option>
-          <option>Bathrooms</option>
-        </Select>
+        <PropertySortFilter search={searchParams} />
       </Stack>
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={2} pt="10">
         {property.map((prop) => (
