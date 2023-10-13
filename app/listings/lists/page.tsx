@@ -8,9 +8,23 @@ import ListingCard from "./ListingCard";
 
 import Link from "next/link";
 import PropertyFilter from "./PropertyFilter";
+import { ListingStatus } from "@prisma/client";
 
-const ListingsPage = async () => {
-  const property = await prisma.property.findMany();
+interface Props {
+  searchParams: { listingStatus: ListingStatus };
+}
+
+const ListingsPage = async ({ searchParams }: Props) => {
+  const statuses = Object.values(ListingStatus);
+  const status = statuses.includes(searchParams.listingStatus)
+    ? searchParams.listingStatus
+    : undefined;
+
+  const property = await prisma.property.findMany({
+    where: {
+      listingStatus: status,
+    },
+  });
 
   return (
     <div>
