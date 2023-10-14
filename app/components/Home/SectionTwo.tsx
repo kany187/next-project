@@ -10,9 +10,7 @@ import {
 } from "@chakra-ui/react";
 
 import Image from "next/image";
-import shot from "/public/shot.jpg";
 import pic from "/public/pic.jpg";
-import building from "/public/building.jpg";
 
 const SectionTwo = () => {
   return (
@@ -48,7 +46,7 @@ const SectionTwo = () => {
               </Badge>
             </Flex>
 
-            <Image src={shot} alt="shot image" width={445} height={300} />
+            <Image src={pic} alt="shot image" width={445} height={300} />
           </Card>
           <Card borderRadius="10px" overflow="hidden">
             <Flex alignItems="center" justifyContent="space-between">
@@ -144,7 +142,7 @@ const SectionTwo = () => {
               </Badge>
             </Flex>
 
-            <Image src={shot} alt="shot image" width={445} height={300} />
+            <Image src={pic} alt="shot image" width={445} height={300} />
           </Card>
           <Card borderRadius="10px" overflow="hidden">
             <Flex alignItems="center" justifyContent="space-between">
