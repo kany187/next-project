@@ -10,9 +10,14 @@ import Link from "next/link";
 import PropertyFilter from "./PropertyFilter";
 import { ListingStatus, Property } from "@prisma/client";
 import PropertySortFilter from "./PropertySortFilter";
+import Pagination from "@/app/components/Pagination";
 
 interface Props {
-  searchParams: { listingStatus: ListingStatus; orderBy: keyof Property };
+  searchParams: {
+    listingStatus: ListingStatus;
+    orderBy: keyof Property;
+    page: string;
+  };
 }
 
 const ListingsPage = async ({ searchParams }: Props) => {
@@ -24,11 +29,21 @@ const ListingsPage = async ({ searchParams }: Props) => {
   const orderBy = searchParams.orderBy
     ? { [searchParams.orderBy]: "asc" }
     : undefined;
+
+  const page = parseInt(searchParams.page) || 1;
+  const pageSize = 5;
+
   const property = await prisma.property.findMany({
     where: {
       listingStatus: status,
     },
     orderBy,
+    skip: (page - 1) * pageSize,
+    take: pageSize,
+  });
+
+  const propertyCount = await prisma.property.count({
+    where: { listingStatus: status },
   });
 
   return (
@@ -62,6 +77,7 @@ const ListingsPage = async ({ searchParams }: Props) => {
           </Link>
         ))}
       </SimpleGrid>
+      <Pagination pageSize={10} currentPage={10} itemCount={100} />
     </div>
   );
 };

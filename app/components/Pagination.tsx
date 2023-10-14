@@ -32,27 +32,28 @@ const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
       </Text>
 
       <IconButton
-        aria-label="double-right"
+        aria-label="double-left"
+        fontSize="10px"
         isDisabled={currentPage === 1}
-        icon={<HiOutlineChevronDoubleLeft size="30" />}
+        icon={<HiOutlineChevronDoubleLeft size="20" />}
         onClick={() => changePage(1)}
       />
       <IconButton
-        aria-label="double-right"
+        aria-label="left"
         isDisabled={currentPage === 1}
-        icon={<BsChevronLeft size="30" />}
+        icon={<BsChevronLeft size="20" />}
         onClick={() => changePage(currentPage - 1)}
       />
       <IconButton
-        aria-label="double-right"
+        aria-label="right"
         isDisabled={currentPage === pageCount}
-        icon={<BsChevronRight size="30" />}
+        icon={<BsChevronRight size="20" />}
         onClick={() => changePage(currentPage + 1)}
       />
       <IconButton
         aria-label="double-right"
         isDisabled={currentPage === pageCount}
-        icon={<HiOutlineChevronDoubleRight size="30" />}
+        icon={<HiOutlineChevronDoubleRight size="20" />}
         onClick={() => changePage(pageCount)}
       />
     </Flex>
