@@ -12,10 +12,17 @@ import { PropertySchema } from "@/app/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Property } from "@prisma/client";
+import Upload from "@/app/components/Upload";
 
 type PropertyFormData = z.infer<typeof PropertySchema>;
 
-const PropertyForm = ({ property }: { property?: Property }) => {
+const PropertyForm = ({
+  property,
+  url,
+}: {
+  property?: Property;
+  url?: string;
+}) => {
   const router = useRouter();
   const {
     register,
@@ -27,6 +34,7 @@ const PropertyForm = ({ property }: { property?: Property }) => {
 
   const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false);
+  const [src, setUrl] = useState("");
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -49,7 +57,6 @@ const PropertyForm = ({ property }: { property?: Property }) => {
 
       <form className="space-y-3" onSubmit={onSubmit}>
         <FormControl>
-          <FormLabel>Street</FormLabel>
           <Input
             defaultValue={property?.streetAddress}
             placeholder="street"
@@ -89,6 +96,8 @@ const PropertyForm = ({ property }: { property?: Property }) => {
           {...register("bath")}
         />
         <ErrorMessage>{errors.bath?.message}</ErrorMessage>
+        <Upload src={setUrl} />
+        {<Input placeholder={src} value={src} {...register("imgSrc")} />}
         <Button disabled={isSubmitting} type="submit">
           {property ? "Update Property" : "Submit"}{" "}
           {isSubmitting && <Spinner />}

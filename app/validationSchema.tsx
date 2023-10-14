@@ -7,6 +7,7 @@ export const PropertySchema = z.object({
   city: z.string().min(1).max(255),
   country: z.string().min(1).max(255),
   streetAddress: z.string().min(1).max(255),
+  imgSrc: z.string().min(1).max(255),
 });
 
 export const pathPropertySchema = z.object({
@@ -16,6 +17,7 @@ export const pathPropertySchema = z.object({
   city: z.string().min(1).max(255).optional(),
   country: z.string().min(1).max(255).optional(),
   streetAddress: z.string().min(1).max(255).optional(),
+  imgSrc: z.string().min(1).max(255).optional(),
   assignedToUserId: z
     .string()
     .min(1, "AssignedToUserId is required")

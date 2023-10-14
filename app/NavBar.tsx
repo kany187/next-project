@@ -1,11 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import React from "react";
-import logo from "../public/logo.jpg";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import classnames from "classnames";
 import {
   Avatar,
   Button,
@@ -15,7 +9,11 @@ import {
   MenuList,
   Stack,
 } from "@chakra-ui/react";
+import classnames from "classnames";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Skeleton from "react-loading-skeleton";
 
 const NavBar = () => {
@@ -33,9 +31,14 @@ const NavBar = () => {
   return (
     <>
       <Stack direction="row" justify="space-between" bgColor="gray.100" pt="5">
-        <Stack direction="row">
-          <Link href="/" className="mr-5 ">
-            <Image src={logo} alt="Logo" className="h-12 w-auto" />
+        <Stack direction="row" align="center">
+          <Link href="/" className="mr-5 ml-10 pb-2">
+            <Image
+              src="https://res.cloudinary.com/dcmbyy4e7/image/upload/v1697264845/congo-estate/rcnp3oogsmrzdbzbv92n.jpg"
+              width={70}
+              height={170}
+              alt="Logo"
+            />
           </Link>
           <div className="tabs">
             <ul className="flex space-x-4">
@@ -59,7 +62,7 @@ const NavBar = () => {
           {status === "authenticated" && (
             <Menu autoSelect={false}>
               <MenuButton>
-                <Avatar src={session.user!.image!} ignoreFallback />
+                <Avatar src={session.user!.image!} ignoreFallback mr="10" />
               </MenuButton>
               <MenuList>
                 <MenuItem _hover={{ bg: "white" }}>
@@ -83,7 +86,7 @@ const NavBar = () => {
             </Menu>
           )}
           {status === "unauthenticated" && (
-            <Stack>
+            <Stack direction="row">
               <Link href="/api/auth/signup">
                 <Button fontWeight={400} fontSize={"sm"}>
                   Sign up

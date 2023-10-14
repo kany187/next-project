@@ -1,7 +1,14 @@
+"use client";
+
+import { Box } from "@chakra-ui/react";
 import PropertyForm from "../_components/PropertyForm";
 
 const NewPropertyPage = () => {
-  return <PropertyForm />;
+  return (
+    <Box>
+      <PropertyForm />
+    </Box>
+  );
 };
 
 export default NewPropertyPage;

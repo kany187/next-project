@@ -8,13 +8,8 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
 
 import Image from "next/image";
-
-import house from "/public/house.png";
-import house2 from "/public/house2.png";
-import rent from "/public/rent.png";
 
 const SectionThree = () => {
   return (
@@ -28,7 +23,12 @@ const SectionThree = () => {
           justifyContent="center"
         >
           <Card maxW="sm">
-            <Image src={house} alt="house" width={400} />
+            <Image
+              src="https://res.cloudinary.com/dcmbyy4e7/image/upload/v1697274568/congo-estate/gjxwhfcjuxdzwwsisrwe.png"
+              alt="search-house-img"
+              width={400}
+              height={100}
+            />
             <Heading alignSelf="center">Looking for a house</Heading>
             <CardBody>
               <Text align="center">
@@ -37,13 +37,18 @@ const SectionThree = () => {
               </Text>
             </CardBody>
             <CardFooter alignItems="center">
-              <Button colorScheme="blue" variant="ghost" alignItems="center">
+              <Button colorScheme="blue" alignItems="center">
                 Find out more
               </Button>
             </CardFooter>
           </Card>
           <Card maxW="sm">
-            <Image src={house2} alt="house" width={400} />
+            <Image
+              src="https://res.cloudinary.com/dcmbyy4e7/image/upload/v1697268248/congo-estate/zxabg5mwfncivik81mbv.png"
+              alt="sell-house-img"
+              width={400}
+              height={100}
+            />
             <Heading alignSelf="center">Sell a home</Heading>
             <CardBody>
               <Text align="center">
@@ -52,13 +57,16 @@ const SectionThree = () => {
               </Text>
             </CardBody>
             <CardFooter>
-              <Button colorScheme={"blue"} variant="">
-                See your options
-              </Button>
+              <Button colorScheme={"blue"}>See your options</Button>
             </CardFooter>
           </Card>
           <Card maxW="sm">
-            <Image src={rent} alt="house" width={400} />
+            <Image
+              src="https://res.cloudinary.com/dcmbyy4e7/image/upload/v1697270494/congo-estate/siye4212otm7ejdebcsk.png"
+              alt="house"
+              width={400}
+              height={100}
+            />
             <Heading alignSelf="center">Rent a home</Heading>
             <CardBody>
               <Text align="center" flexWrap="wrap">
@@ -67,9 +75,7 @@ const SectionThree = () => {
               </Text>
             </CardBody>
             <CardFooter>
-              <Button colorScheme="blue" variant="ghost">
-                Find rentals
-              </Button>
+              <Button colorScheme="blue">Find rentals</Button>
             </CardFooter>
           </Card>
         </Stack>

@@ -29,7 +29,7 @@ export default function RootLayout({
             <ChakraProvider>
               <NavBar />
               <main className="p-5">{children}</main>
-              {/* <Footer /> */}
+              <Footer />
             </ChakraProvider>
           </AuthProvider>
         </QueryClientProvider>

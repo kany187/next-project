@@ -54,7 +54,7 @@ const ListingsPage = async ({ searchParams }: Props) => {
       </Heading>
       <Stack direction="row" pt="5">
         <Text color="black" pt="2">
-          24 Homes
+          {propertyCount} Homes
         </Text>
         <Text color="black" pt="2">
           Sort by
@@ -77,7 +77,11 @@ const ListingsPage = async ({ searchParams }: Props) => {
           </Link>
         ))}
       </SimpleGrid>
-      <Pagination pageSize={10} currentPage={10} itemCount={100} />
+      <Pagination
+        pageSize={pageSize}
+        currentPage={page}
+        itemCount={propertyCount}
+      />
     </div>
   );
 };

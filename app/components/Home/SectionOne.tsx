@@ -28,10 +28,8 @@ const SectionOne = () => {
             <InputGroup>
               <Input
                 placeholder="Address, School, Zip or Neighborhood"
-                _placeholder={{ color: "gray" }}
                 size="md"
                 w="400px"
-                border="2px"
                 borderRadius="full"
                 bg="white"
                 focusBorderColor="white"

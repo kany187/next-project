@@ -3,7 +3,6 @@ import PropertyForm from "../../_components/PropertyForm";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
 import DeletePropertyButton from "./DeletePropertyButton";
-import { Stack } from "@chakra-ui/react";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
 

@@ -1,10 +1,8 @@
 "use client";
 
-import React from "react";
 import {
   Box,
   Container,
-  Divider,
   IconButton,
   Stack,
   Text,
@@ -12,11 +10,12 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 
-import { AiOutlineInstagram } from "react-icons/ai";
-import { AiFillFacebook } from "react-icons/ai";
-import { AiOutlineWhatsApp } from "react-icons/ai";
+import {
+  AiFillFacebook,
+  AiOutlineInstagram,
+  AiOutlineWhatsApp,
+} from "react-icons/ai";
 
-import logo from "/public/logo.jpg";
 import Link from "next/link";
 
 const Footer = () => {
@@ -26,14 +25,13 @@ const Footer = () => {
         bg={useColorModeValue("gray.500", "gray.900")}
         color={useColorModeValue("gray.700", "gray.200")}
       >
-        <Stack
-          maxW={"6xl"}
-          py={4}
-          spacing={4}
-          justify={"center"}
-          align={"center"}
-        >
-          <Image src={logo} alt="Logo" width={80} />
+        <Stack py={4} spacing={4} justify="center" align="center">
+          <Image
+            src="https://res.cloudinary.com/dcmbyy4e7/image/upload/v1697264845/congo-estate/rcnp3oogsmrzdbzbv92n.jpg"
+            alt="Logo"
+            width={80}
+            height={100}
+          />
           <Stack direction="row" spacing="6">
             <Link href="/about">
               <Box>About us</Box>
