@@ -47,6 +47,7 @@ enum PropertyType {
   HOUSE
   APPARTMENT
   LAND
+  OFFICE_SPACE
 }
 
 model Account {

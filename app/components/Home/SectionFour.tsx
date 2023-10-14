@@ -1,17 +1,15 @@
 "use client";
 
 import {
-  Heading,
   Card,
   CardBody,
-  Stack,
-  Text,
+  Heading,
   Highlight,
+  SimpleGrid,
+  Text,
 } from "@chakra-ui/react";
 
-import React from "react";
-
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 
 const SectionFour = () => {
   const { isLoaded } = useLoadScript({
@@ -21,15 +19,23 @@ const SectionFour = () => {
   if (!isLoaded) return <div> Loading...</div>;
   return (
     <div>
-      <Heading color="black" size="md" pt="20" ml="230">
+      <Heading
+        color="black"
+        size="md"
+        pt="20"
+        ml={{ base: 0, sm: "100px", md: "100px", lg: "100px", xl: "120px" }}
+      >
         Recommended cities
       </Heading>
-      <Stack
-        direction="row"
+      <SimpleGrid
+        columns={{ sm: 1, md: 3, lg: 3, xl: 3 }}
+        spacing={4}
+        justifyContent={"center"}
+        alignContent={"center"}
+        display={"flex"}
+        flexWrap={"wrap"}
         pt="20"
         pb="20"
-        spacing={4}
-        justifyContent="center"
       >
         <Card maxW="sm">
           <GoogleMap
@@ -124,7 +130,7 @@ const SectionFour = () => {
             </Text>
           </CardBody>
         </Card>
-      </Stack>
+      </SimpleGrid>
     </div>
   );
 };

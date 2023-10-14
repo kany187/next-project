@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import {
+  Heading,
   IconButton,
   Input,
   InputGroup,
@@ -16,9 +17,13 @@ const SectionOne = () => {
     <div>
       <div className={styles.card}>
         <div className="flex items-center justify-center flex-col">
-          <h1 className="text-white text-7xl font-bold p-4 pt-20">
+          <Heading
+            pt="20"
+            size={{ sm: "2xl", md: "2xl", lg: "4xl", xl: "4xl" }}
+            color="white"
+          >
             The #1 site real estate in Congo
-          </h1>
+          </Heading>
           <ul className="flex items-center justify-between space-x-4 pt-5 text-1xl">
             <li>Buy</li>
             <li>Sell</li>
