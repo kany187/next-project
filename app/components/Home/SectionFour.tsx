@@ -10,13 +10,20 @@ import {
 } from "@chakra-ui/react";
 
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+import Skeleton from "react-loading-skeleton";
 
 const SectionFour = () => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
   });
 
-  if (!isLoaded) return <div> Loading...</div>;
+  if (!isLoaded)
+    return (
+      <div>
+        {" "}
+        <Skeleton height="200" width="300" />
+      </div>
+    );
   return (
     <div>
       <Heading
