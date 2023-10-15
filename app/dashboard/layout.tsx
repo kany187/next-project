@@ -1,12 +1,12 @@
 // "use client";
 
-import "./globals.css";
+// import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ChakraProvider } from "@chakra-ui/react";
-import Footer from "./dashboard/components/Footer";
-import AuthProvider from "./auth/Provider";
-import QueryClientProvider from "./QueryClientProvider";
+import NavBar from "./NavBar";
+import AuthProvider from "../auth/Provider";
+import QueryClientProvider from "../QueryClientProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,8 +26,8 @@ export default function RootLayout({
         <QueryClientProvider>
           <AuthProvider>
             <ChakraProvider>
+              <NavBar />
               <main className="p-5">{children}</main>
-              <Footer />
             </ChakraProvider>
           </AuthProvider>
         </QueryClientProvider>

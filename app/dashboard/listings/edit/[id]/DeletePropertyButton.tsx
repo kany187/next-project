@@ -13,7 +13,7 @@ import {
 import axios from "axios";
 import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import Spinner from "@/app/components/Form/Spinner";
+import Spinner from "@/app/dashboard/components/Form/Spinner";
 
 const DeletePropertyButton = ({ propertyId }: { propertyId: number }) => {
   const router = useRouter();

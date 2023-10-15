@@ -10,7 +10,7 @@ import Link from "next/link";
 import PropertyFilter from "./PropertyFilter";
 import { ListingStatus, Property } from "@prisma/client";
 import PropertySortFilter from "./PropertySortFilter";
-import Pagination from "@/app/components/Pagination";
+import Pagination from "@/app/dashboard/components/Pagination";
 
 interface Props {
   searchParams: {

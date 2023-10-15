@@ -6,13 +6,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import ErrorMessage from "@/app/components/Form/ErrorMessage";
-import Spinner from "@/app/components/Form/Spinner";
+import ErrorMessage from "@/app/dashboard/components/Form/ErrorMessage";
+import Spinner from "@/app/dashboard/components/Form/Spinner";
 import { PropertySchema } from "@/app/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Property } from "@prisma/client";
-import Upload from "@/app/components/Upload";
+import Upload from "@/app/dashboard/components/Upload";
 
 type PropertyFormData = z.infer<typeof PropertySchema>;
 

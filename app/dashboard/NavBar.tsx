@@ -32,7 +32,7 @@ const NavBar = () => {
 const NavLinks = () => {
   const currentPath = usePathname();
   const links = [
-    { label: "Buy", href: "/listings/lists" },
+    { label: "Buy", href: "/dashboard/listings/lists" },
     { label: "Sell", href: "/sell" },
     { label: "Rent", href: "/rent" },
   ];
@@ -84,7 +84,7 @@ const AuthStatus = () => {
   if (status === "unauthenticated")
     return (
       <Stack direction="row">
-        <Link href="/api/auth/signup">
+        <Link href="/register">
           <Button fontWeight={400} fontSize={"sm"}>
             Sign up
           </Button>
